@@ -96,8 +96,14 @@ app.get("*", (req, res) => {
 });
 
 // Listen to the web server at port 3000
-app.listen("3000", () => {
-  console.log("app started !");
+// app.listen("3000", () => {
+//   console.log("app started !");
+// });
+
+// listen to the web server at heroku's expected port
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
 // normal config : static pages
 // app.get("", (req, res) => {
