@@ -33,15 +33,17 @@ weatherForm.addEventListener("submit", (e) => {
       }
       const { address, forecast, location } = res;
       messageOne.textContent = `Address : ${address}. Forecast : ${forecast}. Location : ${location}`;
-      return fetch(
-        `https://source.unsplash.com/360x400/?${address},weather,nature,water`
-      );
+
+      return fetch(`https://source.unsplash.com/360x400/?${address},weather`);
     })
     .then((res) => {
       const img = `<img src = "${res.url}" alt = "image not found.">`;
-      document
-        .querySelector(".main-content")
-        .insertAdjacentHTML("beforeend", img);
+
+      const main = document.querySelector(".main-content");
+
+      main.querySelector("img")?.remove();
+
+      main.insertAdjacentHTML("beforeend", img);
     })
     .catch((err) => console.log(err));
 });
